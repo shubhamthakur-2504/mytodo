@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     let tasks = JSON.parse(localStorage.getItem("tasks"))||[];
     render(tasks)
 
+    
+
     todo_add.addEventListener('click', () => {
         const task = todo_text.value.trim();
         if (task === "") return;
@@ -62,6 +64,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         render(tasks);
     }
     function render(tasks){
+        
+        set_hidden(tasks)
+
         tasks.forEach(task => {
             const task_element=document.createElement('li')
             task_element.setAttribute('id', task.id)
@@ -108,6 +113,14 @@ document.addEventListener('DOMContentLoaded',()=>{
         todo_list.innerHTML='';
     }
     
+    function set_hidden(tasks){
+        let list=document.getElementById('todo-list')
+        if(tasks.length===0){
+            list.classList.add('class','hidden')
+        }else{
+            list.classList.remove('hidden')
+        }
+    }
     
 })
 
